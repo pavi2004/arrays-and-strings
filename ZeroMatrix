@@ -1,0 +1,84 @@
+import java.util.*;
+class ZeroMatrix
+{
+  public static void modifyMatrix(int mat[][])
+ {
+    boolean row_flag = false;
+    boolean col_flag = false;
+    for (int i = 0; i < mat.length; i++ )
+   {
+      for (int j = 0; j < mat[0].length; j++)
+     {
+        if (i == 0 && mat[i][j] == 0)
+          row_flag = true;
+            
+        if (j == 0 && mat[i][j] == 0)
+          col_flag = true;
+            
+        if (mat[i][j] == 0)
+       {
+          mat[0][j] = 0;
+          mat[i][0] = 0;
+        }
+      }
+    }
+    for (int i = 1; i < mat.length; i ++)
+   {
+      for (int j = 1; j < mat[0].length; j ++)
+     {
+        if (mat[0][j] == 0 || mat[i][0] == 0)
+       {
+          mat[i][j] = 0;
+        }
+      }       
+   }
+    if (row_flag == true)
+   {
+      for (int i = 0; i < mat[0].length; i++)
+     {
+        mat[0][i] = 0;
+      }
+    }
+    if (col_flag == true)
+   {
+      for (int i = 0; i < mat.length; i ++)
+     {
+        mat[i][0] = 0;
+      }
+    }
+  }
+  public static void printMatrix(int mat[][])
+ {
+    for (int i = 0; i < mat.length; i ++)
+   {
+      for (int j = 0; j < mat[0].length; j ++)
+     {
+        System.out.print( mat[i][j] );
+      }
+        System.out.println("");
+    }
+   System.out.println("");
+  }
+  public static void main(String args[] )
+ {
+    Scanner sc=new Scanner(System.in);
+   System.out.println("Enter no of rows and cols:");
+   int row=sc.nextInt();
+   int col=sc.nextInt();
+    int mat[][] = new int[row][col];
+    for(int i=0;i<row;i++)
+   {
+     for(int j=0;j<col;j++)
+     {
+       mat[i][j]=sc.nextInt();
+     }
+   }
+    System.out.println("Input Matrix :");
+    printMatrix(mat);
+      
+    modifyMatrix(mat);
+      
+    System.out.println("Matrix After Modification :");
+    printMatrix(mat);
+      
+  }
